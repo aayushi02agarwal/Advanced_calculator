@@ -1,5 +1,6 @@
 from tkinter import *
 import parser
+import math
 from math import factorial
 
 
@@ -53,10 +54,73 @@ def fact():
         result = factorial(int(entire_string))
         clear_all()
         display.insert(0,result)
+        length=len(str(result))
+        i+=length
+    except Exception:
+        clear_all()
+        display.insert(0,"Error")
+        
+def tan():
+    entire_string = display.get()
+    try:
+        current = math.tan(math.radians(int(entire_string)))
+        clear_all()
+        display.insert(0,current)
+        length=len(str(current))
+        i+=length
     except Exception:
         clear_all()
         display.insert(0,"Error")
 
+def sin():
+        global i
+        entire_string = display.get()
+    # try:
+        current = math.sin(math.radians(int(entire_string)))
+        clear_all()
+        display.insert(0,current)
+        length=len(str(current))
+        i+=length
+    # except Exception:
+    #     clear_all()
+    #     display.insert(0,"Error")
+        
+def cos():
+        global i
+        entire_string = display.get()
+        s='[+-/*%]'
+        c=0
+        for i in range(len(entire_string)):
+            if entire_string[i] in s:
+                c=i
+        e_s=entire_string[c+1:]
+    # try:
+        if c==0:
+            current = math.cos(math.radians(int(e_s)))
+            clear_all()
+            display.insert(0,current)
+        else:
+            current = math.cos(math.radians(int(e_s)))
+            display.insert(c+1,current)
+            calculate()
+        length=len(str(current))
+        i+=length
+    # except Exception:
+    #     clear_all()
+    #     display.insert(0,"Error")
+
+def sqroot():
+    entire_string = display.get()
+    try:
+        current = math.sqrt(int(entire_string))
+        clear_all()
+        display.insert(0,current)
+        length=len(str(current))
+        i+=length
+    except Exception:
+        clear_all()
+        display.insert(0,"Error")
+        
 display = Entry(root)
 display.grid(row=1,columnspan=6,sticky=N+E+W+S)
 
@@ -72,7 +136,6 @@ Button(root,text="7",command = lambda :get_variables(7)).grid(row=4,column=0, st
 Button(root,text=" 8",command = lambda :get_variables(8)).grid(row=4,column=1, sticky=N+S+E+W)
 Button(root,text=" 9",command = lambda :get_variables(9)).grid(row=4,column=2, sticky=N+S+E+W)
  
-#adding other buttons to the calculator
 Button(root,text="AC",command=lambda :clear_all()).grid(row=5,column=0, sticky=N+S+E+W)
 Button(root,text=" 0",command = lambda :get_variables(0)).grid(row=5,column=1, sticky=N+S+E+W)
 Button(root,text=" .",command=lambda :get_variables(".")).grid(row=5, column=2, sticky=N+S+E+W)
@@ -88,11 +151,17 @@ Button(root,text="%",command= lambda :get_operation("%")).grid(row=3,column=4, s
 Button(root,text="(",command= lambda :get_operation("(")).grid(row=4,column=4, sticky=N+S+E+W)
 Button(root,text="exp",command= lambda :get_operation("**")).grid(row=5,column=4, sticky=N+S+E+W)
  
-Button(root,text="<-",command= lambda :undo()).grid(row=2,column=5, sticky=N+S+E+W)
-Button(root,text="x!", command= lambda: fact()).grid(row=3,column=5, sticky=N+S+E+W)
-Button(root,text=")",command= lambda :get_operation(")")).grid(row=4,column=5, sticky=N+S+E+W)
-Button(root,text="^2",command= lambda :get_operation("**2")).grid(row=5,column=5, sticky=N+S+E+W)
-Button(root,text="^2",command= lambda :get_operation("**2")).grid(row=5,column=5, sticky=N+S+E+W)
+Button(root,text="tan",command= lambda :tan()).grid(row=2,column=5, sticky=N+S+E+W)
+Button(root,text="cos", command= lambda: cos()).grid(row=3,column=5, sticky=N+S+E+W)
+Button(root,text="sin",command= lambda : sin()).grid(row=4,column=5, sticky=N+S+E+W)
+Button(root,text="sqrt",command= lambda : sqroot()).grid(row=5,column=5, sticky=N+S+E+W)
+
+Button(root,text="<-",command= lambda :undo()).grid(row=2,column=6, sticky=N+S+E+W)
+Button(root,text="x!", command= lambda: fact()).grid(row=3,column=6, sticky=N+S+E+W)
+Button(root,text=")",command= lambda :get_operation(")")).grid(row=4,column=6, sticky=N+S+E+W)
+Button(root,text="^2",command= lambda :get_operation("**2")).grid(row=5,column=6, sticky=N+S+E+W)
+
+
 Button(root,text="=",command= lambda :calculate()).grid(columnspan=6, sticky=N+S+E+W)
 
  
