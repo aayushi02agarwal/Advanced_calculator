@@ -48,78 +48,109 @@ def undo():
         display.insert(0,"Error")
 
 #Function to calculate the factorial and display it
+
 def fact():
-    entire_string = display.get()
-    try:
-        result = factorial(int(entire_string))
-        clear_all()
-        display.insert(0,result)
-        length=len(str(result))
-        i+=length
-    except Exception:
-        clear_all()
-        display.insert(0,"Error")
+            global i
+            entire_string = display.get() 
+            s='[(+-/*%]'
+            c=0
+            for i in range(len(entire_string)):
+                if entire_string[i] in s:
+                    c=i
+            e_s = entire_string[c+1:]
+        
+            if c==0:
+                current = factorial(int(entire_string))
+                clear_all()
+                display.insert(0,current)
+            else:
+                current = factorial(int(e_s))
+                str1 = entire_string[:c]
+                clear_all()
+                display.insert(0,int(str1)+current)
+            length=len(str(current))
+            i+=length
         
 def tan():
-    entire_string = display.get()
-    try:
-        current = math.tan(math.radians(int(entire_string)))
-        clear_all()
-        display.insert(0,current)
-        length=len(str(current))
-        i+=length
-    except Exception:
-        clear_all()
-        display.insert(0,"Error")
-
-def sin():
         global i
         entire_string = display.get()
-    # try:
-        current = math.sin(math.radians(int(entire_string)))
-        clear_all()
-        display.insert(0,current)
-        length=len(str(current))
-        i+=length
-    # except Exception:
-    #     clear_all()
-    #     display.insert(0,"Error")
-        
-def cos():
-        global i
-        entire_string = display.get()
-        s='[+-/*%]'
+        s='[(+-/*%]'
         c=0
         for i in range(len(entire_string)):
             if entire_string[i] in s:
                 c=i
         e_s=entire_string[c+1:]
-    # try:
         if c==0:
-            current = math.cos(math.radians(int(e_s)))
+            current = math.tan(math.radians(int(entire_string)))
+            clear_all()
+            display.insert(0,current)
+        else:
+            current = math.tan(math.radians(int(e_s)))
+            display.insert(c+1,current)
+        length=len(str(current))
+        i+=length
+
+
+
+def sin():
+        global i
+        entire_string = display.get()
+        s='[(+-/*%]'
+        c=0
+        for i in range(len(entire_string)):
+            if entire_string[i] in s:
+                c=i
+        e_s=entire_string[c+1:]
+        if c==0:
+            current = math.sin(math.radians(int(entire_string)))
+            clear_all()
+            display.insert(0,current)
+        else:
+            current = math.sin(math.radians(int(e_s)))
+            display.insert(c+1,current)
+        length=len(str(current))
+        i+=length
+        
+def cos():
+        global i
+        entire_string = display.get()
+        s='[(+-/*%]'
+        c=0
+        for i in range(len(entire_string)):
+            if entire_string[i] in s:
+                c=i
+        e_s=entire_string[c+1:]
+        if c==0:
+            current = math.cos(math.radians(int(entire_string)))
             clear_all()
             display.insert(0,current)
         else:
             current = math.cos(math.radians(int(e_s)))
             display.insert(c+1,current)
-            calculate()
         length=len(str(current))
         i+=length
-    # except Exception:
-    #     clear_all()
-    #     display.insert(0,"Error")
 
 def sqroot():
-    entire_string = display.get()
-    try:
-        current = math.sqrt(int(entire_string))
-        clear_all()
-        display.insert(0,current)
-        length=len(str(current))
-        i+=length
-    except Exception:
-        clear_all()
-        display.insert(0,"Error")
+            global i
+            entire_string = display.get() 
+            s='[(+-/*%]'
+            c=0
+            for i in range(len(entire_string)):
+                if entire_string[i] in s:
+                    c=i
+            e_s = entire_string[c+1:]
+        
+            if c==0:
+                current = math.sqrt(int(entire_string))
+                clear_all()
+                display.insert(0,current)
+            else:
+                current = math.sqrt(int(e_s))
+                str1 = entire_string[:c]
+                clear_all()
+                display.insert(0,float(str1)+float(current))
+            length=len(str(current))
+            i+=length
         
 display = Entry(root)
 display.grid(row=1,columnspan=6,sticky=N+E+W+S)
