@@ -5,7 +5,7 @@ from math import factorial
 
 
 root = Tk()
-root.title('DataFlair - Calculator')
+root.title('Advanced-Calculator')
 
 i = 0
 
