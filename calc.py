@@ -47,29 +47,6 @@ def undo():
         clear_all()
         display.insert(0,"Error")
 
-#Function to calculate the factorial and display it
-
-def fact():
-            global i
-            entire_string = display.get() 
-            s='[(+-/*%]'
-            c=0
-            for i in range(len(entire_string)):
-                if entire_string[i] in s:
-                    c=i
-            e_s = entire_string[c+1:]
-        
-            if c==0:
-                current = factorial(int(entire_string))
-                clear_all()
-                display.insert(0,current)
-            else:
-                current = factorial(int(e_s))
-                str1 = entire_string[:c]
-                clear_all()
-                display.insert(0,int(str1)+current)
-            length=len(str(current))
-            i+=length
         
 def tan():
         global i
@@ -188,7 +165,6 @@ Button(root,text="sin",command= lambda : sin()).grid(row=4,column=5, sticky=N+S+
 Button(root,text="sqrt",command= lambda : sqroot()).grid(row=5,column=5, sticky=N+S+E+W)
 
 Button(root,text="<-",command= lambda :undo()).grid(row=2,column=6, sticky=N+S+E+W)
-Button(root,text="x!", command= lambda: fact()).grid(row=3,column=6, sticky=N+S+E+W)
 Button(root,text=")",command= lambda :get_operation(")")).grid(row=4,column=6, sticky=N+S+E+W)
 Button(root,text="^2",command= lambda :get_operation("**2")).grid(row=5,column=6, sticky=N+S+E+W)
 
