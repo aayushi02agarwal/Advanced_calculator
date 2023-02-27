@@ -47,7 +47,7 @@ def undo():
         clear_all()
         display.insert(0,"Error")
 
-        
+#Functions to perform trignimetric operations
 def tan():
         global i
         entire_string = display.get()
@@ -66,8 +66,6 @@ def tan():
             display.insert(c+1,current)
         length=len(str(current))
         i+=length
-
-
 
 def sin():
         global i
@@ -107,6 +105,8 @@ def cos():
         length=len(str(current))
         i+=length
 
+        
+#Function to calculte square root
 def sqroot():
             global i
             entire_string = display.get() 
